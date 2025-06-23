@@ -52,3 +52,10 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+:root {
+  --primary-color: #82B08C;
+  --secondary-color: #b4bce9;
+  --text-color: #040403;
+
+}
