@@ -47,7 +47,3 @@ body{
 h1{
   color: var(--text-color);
 }
-
-header {
-  background-color: var(--primary-color);
-}

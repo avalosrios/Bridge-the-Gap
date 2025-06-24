@@ -4,6 +4,7 @@ export default function Header() {
     return(
         <header>
             <h1 className='app-name'>Bridge the Gap</h1>
+            <span className='logo'>Logo goes here</span>
         </header>
     );
 }
