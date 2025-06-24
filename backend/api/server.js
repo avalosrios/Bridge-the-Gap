@@ -1,11 +1,28 @@
 const express = require('express')
 const session = require('express-session')
-const authRouter = require('./routes/auth')
 
 const server = express()
-app.use(express.json())
+server.use(express.json())
 
-app.use(authRouter)
+// -----------------------USER ROUTING------------------------ //
+
+//[GET] /api/user/?name
+//  Use prisma db commands to request for users based on usernames
+server.get('/api/user', async (req, res, next) => {
+    console.log('GET request for user')
+})
+
+//[PUT] /api/user/?name
+server.put('/api/user', async (req, res, next) => {
+    console.log('PUT request for user')
+})
+
+//[DELETE] /api/user/?name
+server.delete('/api/user', async (req, res, next) => [
+    console.log('DELETE request for user')
+])
+
+// ---------------------------------------------------------- //
 
 // [CATCH-ALL]
 server.use((req, res, next) => {
@@ -15,7 +32,7 @@ server.use((req, res, next) => {
 //  [ERROR-HANDLING]
 server.use((err, req, res, next) => {
     const { message, status = 500 } = err;
-    res.status(status).json({ message }); // Unsafe in prod
+    res.status(status).json({ message }); // REMOVE FROM PROD
 })
 
 module.exports = server

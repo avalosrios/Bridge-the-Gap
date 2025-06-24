@@ -1,8 +1,8 @@
-// Hash and verify passwords using bcrypt
+// Hash and verify passwords using argon2
+// Wiki for argon2: https://github.com/ranisalt/node-argon2/wiki/Options
+const argon2 = require('argon2');
 
-const bcrypt = require('bcryptjs')
-
-function hashPassword(password) {
+async function hashPassword (password) {
 
 }
 
