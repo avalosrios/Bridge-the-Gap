@@ -4,12 +4,7 @@ header {
     width: 100%;
     justify-content: space-between;
 }
-.app-name {
-    margin-left: 2%;
-    align-self: flex-start;
-}
 
 .logo {
-    margin-right: 2%;
-    align-self: flex-end;
+    align-self: flex-start;
 }
