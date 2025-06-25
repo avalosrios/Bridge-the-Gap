@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import './index.css'
 import HomePage from './pages/HomePage.jsx'
 import GroupPage from './pages/GroupPage.jsx'
+import ProfilePage from './pages/ProfilePage.jsx'
 
 const routes = createBrowserRouter([
     {
@@ -12,6 +13,10 @@ const routes = createBrowserRouter([
     {
         path: '/group/:id',
         element: <GroupPage />
+    },
+    {
+        path: '/profile',
+        element: <ProfilePage />
     }
 ])
 

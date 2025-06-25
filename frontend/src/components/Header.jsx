@@ -1,4 +1,5 @@
 import '../styles/Header.css'
+import { Link } from 'react-router';
 
 export default function Header() {
     return(
@@ -6,7 +7,10 @@ export default function Header() {
             <div className='logo'>
                 <h1>Bridge the Gap</h1>
             </div>
-            <img src="/default_profile_pic.jpg" alt="Profile Phot" className='profile-photo'/>
+            <div className='profile-icon'>
+                <Link to='/profile'className='profile-link'></Link>
+                <img src="/default_profile_pic.jpg" alt="Profile Phot" className='profile-photo'/>
+            </div>
         </header>
     );
 }

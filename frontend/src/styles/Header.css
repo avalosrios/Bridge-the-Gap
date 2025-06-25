@@ -20,8 +20,25 @@ header {
     border-radius: 40px;
 }
 
-
 .profile-photo:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.profile-icon {
+    position: relative;
+}
+
+.profile-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.profile-link:hover{
     cursor: pointer;
     filter: drop-shadow(0 0 2em #646cffaa);
 }
