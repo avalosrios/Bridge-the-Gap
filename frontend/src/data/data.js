@@ -54,21 +54,36 @@ const Groups = [
         members: [
             {
                 name: "Jackson",
-                profile_img: "\default_profile_pic.png"
+                profile_img: "/default_profile_pic.png"
             },
             {
                 name: "Will C.",
-                profile_img: "\default_profile_pic.png"
+                profile_img: "/default_profile_pic.png"
             },
             {
                 name: "Ansh",
-                profile_img: "\default_profile_pic.png"
+                profile_img: "/default_profile_pic.png"
             },
             {
                 name: "Williams",
-                profile_img: "\default_profile_pic.png"
+                profile_img: "/default_profile_pic.png"
             },
             
+        ]
+    },
+    {
+        id: 3,
+        title: "Girlfriend",
+        img: "/deafult_group_pic.png",
+        members: [
+            {
+                name: "Jackson",
+                profile_img: "/default_profile_pic.png"
+            },
+            {
+                name: "Berkley",
+                profile_img: "/default_profile_pic.png"
+            },
         ]
     },
 ]

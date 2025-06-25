@@ -1,5 +1,6 @@
 .group-card {
-    width: 30%;
+    width:  auto;
+    max-width: fit-content;
     height: 20vh;
     margin: 5% auto;
     background-color: var(--thrid-color);
@@ -10,6 +11,7 @@
 
 .group-info {
     display: flex;
+    width: 100%;
 }
 
 .group-img {
