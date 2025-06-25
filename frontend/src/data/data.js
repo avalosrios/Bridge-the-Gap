@@ -2,7 +2,7 @@ const Groups = [
     {
         id: 0,
         title: "Family",
-        img: "/default_group_pic.png",
+        img: "/deafult_group_pic.png",
         members: [
             {
                 name: "Jackson",
@@ -26,7 +26,7 @@ const Groups = [
         {
         id: 1,
         title: "Lapeer Friends",
-        img: "/default_group_pic.png",
+        img: "/deafult_group_pic.png",
         members: [
             {
                 name: "Jackson",
@@ -48,25 +48,25 @@ const Groups = [
         ]
     },
         {
-        id: 0,
+        id: 2,
         title: "College Friends",
-        img: "/default_group_pic.png",
+        img: "/deafult_group_pic.png",
         members: [
             {
                 name: "Jackson",
-                profile_img: "default_profile_pic.png"
+                profile_img: "\default_profile_pic.png"
             },
             {
                 name: "Will C.",
-                profile_img: "default_profile_pic.png"
+                profile_img: "\default_profile_pic.png"
             },
             {
                 name: "Ansh",
-                profile_img: "default_profile_pic.png"
+                profile_img: "\default_profile_pic.png"
             },
             {
                 name: "Williams",
-                profile_img: "default_profile_pic.png"
+                profile_img: "\default_profile_pic.png"
             },
             
         ]

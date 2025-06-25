@@ -1,3 +1,22 @@
+.group-card {
+    width: 30%;
+    height: 20vh;
+    margin: 5% auto;
+    background-color: var(--thrid-color);
+
+    border: gray solid 2px;
+    border-radius: 10px;
+}
+
 .group-info {
     display: flex;
+}
+
+.group-img {
+    width: 9em;
+    height: 9em;
+}
+
+.member-list {
+    margin: 0 1em;
 }
