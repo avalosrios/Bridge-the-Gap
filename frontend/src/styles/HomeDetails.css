@@ -6,6 +6,7 @@
     padding: 2em;
 
     background-color: var(--third-color);
+    box-shadow: 3.0px 6.1px 6.1px hsl(0deg 0% 0% / 0.41);
 }
 
 .reminders-list {

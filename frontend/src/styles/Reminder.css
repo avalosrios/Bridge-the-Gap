@@ -1,6 +1,10 @@
 .reminder-card {
     width: 20%;
+    min-width: 5em;
     height: auto;
+    max-height: 20%;
     background-color: var(--secondary-color);
     margin: 2em;
+    overflow-y: auto;
 }
+

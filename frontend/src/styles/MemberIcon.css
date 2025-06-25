@@ -1,11 +1,11 @@
 .member-icon {
     width: 15em;
-    min-width: fit-content;
+    min-width: 15%;
     margin: 1em 3em;
 }
 
 .member-name {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .member-img {
