@@ -1,6 +1,7 @@
 import './App.css'
 import Header from './components/Header'
 import Navagation from './components/Navagation'
+import HomeDetails from './components/HomeDetails'
 import GroupList from './components/GroupList'
 import Footer from './components/Footer'
 
@@ -14,7 +15,10 @@ function App() {
       <div className='search-form'>
         <Navagation />
       </div>
-      <GroupList groups={Groups} />
+      <div className='home-content'>
+        <HomeDetails />
+        <GroupList groups={Groups} />
+      </div>
       <Footer />
     </>
   )

@@ -45,3 +45,7 @@ h1{
 .search-form {
   margin: 2% auto;
 }
+
+.home-content {
+  display: flex;
+}
