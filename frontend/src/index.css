@@ -20,8 +20,10 @@ body {
   line-height: 1.5;
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
-}
 
+  min-height: 100vh;
+  margin: 0;
+}
 /* 6. Improve media defaults */
 img, picture, video, canvas, svg {
   display: block;
@@ -55,7 +57,11 @@ h1, h2, h3, h4, h5, h6 {
 
 :root {
   --primary-color: #82B08C;
-  --secondary-color: #b4bce9;
-  --text-color: #040403;
+  --secondary-color: #c7d0ff;
+  --third-color: #f7f8f9;
+  --text-color: #121212;
+}
 
+button:hover {
+  cursor: pointer;
 }

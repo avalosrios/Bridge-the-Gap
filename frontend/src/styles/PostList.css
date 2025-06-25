@@ -1,0 +1,19 @@
+.post-container {
+    display: flex;
+    margin: 3em 2em;
+    overflow-x: auto;
+    border: 3px gray solid;
+}
+
+.post-list {
+    display: flex;
+}
+
+.prompt-box {
+    width: 15em;
+    min-width: 200px;
+    margin: 3em;
+    max-height: 30vh;
+    overflow-y: auto;
+    background-color: var(--third-color);
+}

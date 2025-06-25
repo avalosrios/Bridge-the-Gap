@@ -1,0 +1,7 @@
+.members-list{
+    display: flex;
+    justify-content: space-around;
+    overflow-x: auto;
+
+    margin: 1em auto;
+}

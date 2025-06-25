@@ -1,0 +1,7 @@
+.post {
+    width: 12em;
+    min-width: 200px;
+    max-height: 30vh;
+    margin: 2em 1em;
+    background-color: var(--third-color);
+}

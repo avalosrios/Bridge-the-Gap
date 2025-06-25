@@ -1,0 +1,11 @@
+.back-button {
+    position: absolute;
+    text-decoration: none;
+    font-size: 30px;
+    left: 1em;
+    top: 3em;
+}
+
+.group-title {
+    font-size: 4rem;
+}
