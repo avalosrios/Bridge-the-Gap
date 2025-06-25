@@ -1,9 +1,9 @@
 import '../styles/GroupCard.css'
 
-export default function GroupCard() {
+export default function GroupCard({ group }) {
     return (
         <div>
-            <h2>Group Title</h2>
+            <h2>{group.title}</h2>
             <div className='group-info'>
                 <img src="default_group_pic" alt="Group Image" />
                 <div className='member-lsit'>
