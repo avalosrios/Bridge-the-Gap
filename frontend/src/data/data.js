@@ -21,6 +21,53 @@ const Groups = [
                 profile_img: "/default_profile_pic.jpg"
             },
             
+        ],
+        posts: [
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
         ]
     },
         {
@@ -44,7 +91,23 @@ const Groups = [
                 name: "Will R.",
                 profile_img: "/default_profile_pic.jpg"
             },
-            
+        ],
+        posts: [
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
         ]
     },
         {
@@ -68,7 +131,23 @@ const Groups = [
                 name: "Williams",
                 profile_img: "/default_profile_pic.jpg"
             },
-            
+        ],
+        posts: [
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
+            {
+                author: "Jackson",
+                title: "New Post",
+                img: '/default_post_pic.png'
+            },
         ]
     },
     {
@@ -84,7 +163,8 @@ const Groups = [
                 name: "Berkley",
                 profile_img: "/default_profile_pic.jpg"
             },
-        ]
+        ],
+        posts: []
     },
 ]
 
