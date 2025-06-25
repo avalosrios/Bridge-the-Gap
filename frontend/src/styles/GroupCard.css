@@ -4,6 +4,7 @@
     height: 20vh;
     margin: 5% auto;
     background-color: var(--thrid-color);
+    position: relative;
 
     border: gray solid 2px;
     border-radius: 10px;
