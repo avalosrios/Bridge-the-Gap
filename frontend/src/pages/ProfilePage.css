@@ -10,3 +10,8 @@
     left: 1em;
     top: 3em;
 }
+
+.profile-information {
+    display: flex;
+    justify-content: space-evenly;
+}
