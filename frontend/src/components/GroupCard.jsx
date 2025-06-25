@@ -11,7 +11,7 @@ export default function GroupCard({ group }) {
                 <div className='group-info'>
                     <img src={group.img} alt="Group Image" className='group-img'/>
                     <div className='member-list'>
-                        <p>Member List:</p>
+                        <p className='member-list-title'>Member List:</p>
                         {
                             group.members.map(member => {
                                 return <MemberCard member={member} />

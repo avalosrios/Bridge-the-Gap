@@ -17,7 +17,7 @@ function GroupPage() {
     return(
         <main>
             <Header />
-            <h1>{group ? group.title : "Loading Data..."}</h1>
+            <h2 className="group-title">{group ? group.title : "Loading Data..."}</h2>
             <Link to='/' className="back-button">{'<--'}</Link>
             <PostList posts={group ? group.posts : []}/>
             <MembersList members={group ? group.members : []} />

@@ -37,4 +37,9 @@
     width: 10%;
     height: 10%;
     border-radius: 20px;
+    margin-right: 1em;
+}
+
+.member-list-title {
+    text-decoration: underline;
 }
