@@ -11,6 +11,7 @@
 .reminders-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     height: 60%;
     max-height: 60vh;
 

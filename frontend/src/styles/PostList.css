@@ -1,7 +1,8 @@
 .post-container {
     display: flex;
-    margin: 3em auto;
+    margin: 3em 2em;
     overflow-x: auto;
+    border: 3px gray solid;
 }
 
 .post-list {
