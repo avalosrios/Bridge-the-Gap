@@ -18,7 +18,54 @@ const reminders =[
         group:"Lapeer Friends",
         message:"New event added to group calander, opt in?",
     },
-    
+    {
+        group:"Family",
+        message:"Call Mom at 5pm",
+    },
+    {
+        group:"College Friends",
+        message:"Haven't messaged in gorup for 3 days",
+    },
+    {
+        group:"Family",
+        message:"New post from Addy!",
+    },
+    {
+        group:"Lapeer Friends",
+        message:"New event added to group calander, opt in?",
+    },
+    {
+        group:"Family",
+        message:"Call Mom at 5pm",
+    },
+    {
+        group:"College Friends",
+        message:"Haven't messaged in gorup for 3 days",
+    },
+    {
+        group:"Family",
+        message:"New post from Addy!",
+    },
+    {
+        group:"Lapeer Friends",
+        message:"New event added to group calander, opt in?",
+    },
+    {
+        group:"Family",
+        message:"Call Mom at 5pm",
+    },
+    {
+        group:"College Friends",
+        message:"Haven't messaged in gorup for 3 days",
+    },
+    {
+        group:"Family",
+        message:"New post from Addy!",
+    },
+    {
+        group:"Lapeer Friends",
+        message:"New event added to group calander, opt in?",
+    },
 ]
 
 

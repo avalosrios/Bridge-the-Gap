@@ -6,19 +6,19 @@ const Groups = [
         members: [
             {
                 name: "Jackson",
-                profile_img: "default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Addy",
-                profile_img: "default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Mom",
-                profile_img: "default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Dad",
-                profile_img: "default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             
         ]
@@ -30,19 +30,19 @@ const Groups = [
         members: [
             {
                 name: "Jackson",
-                profile_img: "default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Aidan",
-                profile_img: "default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Mason",
-                profile_img: "default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Will R.",
-                profile_img: "default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             
         ]
@@ -54,19 +54,19 @@ const Groups = [
         members: [
             {
                 name: "Jackson",
-                profile_img: "/default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Will C.",
-                profile_img: "/default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Ansh",
-                profile_img: "/default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Williams",
-                profile_img: "/default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             
         ]
@@ -78,11 +78,11 @@ const Groups = [
         members: [
             {
                 name: "Jackson",
-                profile_img: "/default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
             {
                 name: "Berkley",
-                profile_img: "/default_profile_pic.png"
+                profile_img: "/default_profile_pic.jpg"
             },
         ]
     },
