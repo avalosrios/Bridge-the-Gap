@@ -16,7 +16,7 @@ const defaultMember = {
 
 function ProfilePage() {
     return (
-        <div>
+        <main>
         <Header />
         <ProfileBanner />
         <Link to='/' className="back-button">{'<--'}</Link>
@@ -25,7 +25,7 @@ function ProfilePage() {
             <ProfileDetails user={defaultMember}/>
         </div>
         <Footer />
-        </div>  
+        </main>  
     );
 }
 

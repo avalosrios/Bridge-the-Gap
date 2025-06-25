@@ -15,7 +15,7 @@ function GroupPage() {
     const group = Groups.find(group => group.id === +params.id)
 
     return(
-        <>
+        <main>
             <Header />
             <h1>{group ? group.title : "Loading Data..."}</h1>
             <Link to='/' className="back-button">{'<--'}</Link>
@@ -28,7 +28,7 @@ function GroupPage() {
 
             }
             <Footer />
-        </>
+        </main>
     );
 }
 

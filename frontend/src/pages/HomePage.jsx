@@ -10,7 +10,7 @@ import Groups from '../data/data'
 function HomePage() {
 
   return (
-    <>
+    <main>
       <Header />
       <div className='search-form'>
         <Navagation />
@@ -20,7 +20,7 @@ function HomePage() {
         <GroupList groups={Groups} />
       </div>
       <Footer />
-    </>
+    </main>
   )
 }
 
