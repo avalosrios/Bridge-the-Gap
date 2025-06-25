@@ -20,6 +20,26 @@ const Groups = [
                 name: "Dad",
                 profile_img: "/default_profile_pic.jpg"
             },
+            {
+                name: "User",
+                profile_img: "/default_profile_pic.jpg"                
+            },
+            {
+                name: "User",
+                profile_img: "/default_profile_pic.jpg"                
+            },
+            {
+                name: "User",
+                profile_img: "/default_profile_pic.jpg"                
+            },
+            {
+                name: "User",
+                profile_img: "/default_profile_pic.jpg"                
+            },
+            {
+                name: "User",
+                profile_img: "/default_profile_pic.jpg"                
+            }
             
         ],
         posts: [

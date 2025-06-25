@@ -1,0 +1,9 @@
+.member-icon {
+    width: 15em;
+    min-width: 15%;
+    margin: 1em 3em;
+}
+
+.member-img {
+    border-radius: 10em;
+}
