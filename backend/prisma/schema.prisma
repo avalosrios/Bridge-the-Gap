@@ -1,9 +1,5 @@
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -17,7 +13,7 @@ model User {
   password String
   photo    String
   location String
-  email    String
+  email    String?
   groups   Group[]
 }
 
@@ -26,5 +22,14 @@ model Group {
   name     String
   img      String
   members  User[]
-  messages String[]
+  posts    Post[]
+}
+
+model Post {
+  id          Int    @id @default(autoincrement())
+  title       String
+  img         String
+  description String
+  group       Group  @relation(fields: [groupID], references: [id])
+  groupID     Int
 }

@@ -2,25 +2,30 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "db:migrate": "prisma migrate dev",
+    "db:reset": "prisma migrate reset --force",
+    "db:seed": "ts-node prisma/seed.ts",
+    "db:init": "npm run db:reset && npm run db:migrate && npm run db:seed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.4",
+    "prisma": "^6.10.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
   "dependencies": {
     "@prisma/client": "^6.10.1",
-    "argon2": "^0.43.0",
-    "express": "^5.1.0",
-    "express-session": "^1.18.1",
-    "prisma": "^6.10.1"
-  },
-  "scripts": {
-    "dev": "node --env-file=.env --watch index.js",
-    "start": "node index.js",
-    "build": "npm install && npm run db:init",
-    "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset --force",
-    "db:seed": "node prisma/seed.js",
-    "db:init": "npm run db:reset && npm run db:migrate && npm run db:seed",
-    "psql": "psql shelterdb -U app_user"
+    "@prisma/extension-accelerate": "^2.0.1",
+    "express": "^5.1.0"
   }
 }
