@@ -1,3 +1,4 @@
+// @flow
 import "./ProfilePage.css";
 import { Link } from "react-router";
 import Header from "../components/Header";

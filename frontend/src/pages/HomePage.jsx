@@ -1,3 +1,4 @@
+// @flow
 import "./HomePage.css";
 import { useState, useEffect } from "react";
 import { httpRequest } from "../utils/utils";

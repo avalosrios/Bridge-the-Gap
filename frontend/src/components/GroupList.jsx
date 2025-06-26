@@ -1,3 +1,4 @@
+// @flow
 import "../styles/GroupList.css";
 import GroupCard from "./GroupCard";
 
