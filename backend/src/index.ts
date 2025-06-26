@@ -9,6 +9,8 @@ import { withAccelerate } from '@prisma/extension-accelerate';
 
     const port: number = 3000;
 
+    //---------------------GROUP ROUTING--------------------//
+
     //  [GET] /groups
     app.get('/groups', async (req, res, next): Promise<void> => {
         try {
@@ -107,6 +109,86 @@ import { withAccelerate } from '@prisma/extension-accelerate';
             next(error)
         }
     })
+
+    //------------------------------------------------------//
+
+    //---------------------USER ROUTING---------------------//
+
+    // [GET] /users
+    app.get('/users', async (req, res, next): Promise<void> => {
+        try {
+            const users = await prisma.user.findMany();
+            res.json(users);
+        } catch (error) {
+            next(error);
+        }
+    });
+
+    // [GET] /users/:id
+    app.get('/users/:id', async (req, res, next): Promise<void> => {
+        const { id } = req.params;
+        try {
+            const user = await prisma.user.findUnique({where: {id: Number(id)}});
+            res.json(user);
+        } catch (error) {
+            next(error);
+        }
+    })
+
+    // [POST] /users
+    app.post('/users', async (req, res, next): Promise<void> => {
+        const {username, password, photo, location, email} = req.body;
+        try {
+            const result = await prisma.user.create({
+                data:{
+                    username,
+                    password,
+                    photo,
+                    location,
+                    email
+                }
+            })
+            res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    })
+
+    //  [PUT] /users/:id
+    app.put('/users/:id', async (req, res, next): Promise<void> => {
+        const { id } = req.params;
+        const {username, password, photo, location, email} = req.body;
+        try {
+            const result = await prisma.user.update({
+                where: {id: Number(id)},
+                data:{
+                    username,
+                    password,
+                    photo,
+                    location,
+                    email
+                }
+            })
+            res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    })
+
+    // [DELETE] /users/:id
+    app.delete('/users/:id', async (req, res, next): Promise<void> => {
+        const { id } = req.params;
+        try {
+            const result = await prisma.user.delete({
+                where: { id: Number(id)},
+            })
+            res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    })
+
+    //------------------------------------------------------//
 
     //**RUN SERVER ON PORT**//
     app.listen(port, (): void => {
