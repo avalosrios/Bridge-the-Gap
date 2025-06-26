@@ -1,12 +1,107 @@
-    import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response} from 'express';
+import { Prisma, PrismaClient } from '@prisma/client';
+import { withAccelerate } from '@prisma/extension-accelerate';
 
-    const app = express();
-    const port = 3000;
+    const prisma = new PrismaClient().$extends(withAccelerate());
 
-    app.get('/', (req: Request, res: Response) => {
-        res.send('Hello from TypeScript Node.js Backend!');
+    const app: express.Application = express();
+    app.use(express.json())
+
+    const port: number = 3000;
+
+    //  [GET] /groups
+    app.get('/groups', async (req, res, next): Promise<void> => {
+        try {
+            const groups = await prisma.group.findMany();
+            res.json(groups);
+        } catch (error) {
+            next(error);
+        }
     });
 
-    app.listen(port, () => {
+    // [GET] /groups/:id
+    app.get('groups/:id', async (req, res, next): Promise<void> => {
+        const { id } = req.params;
+        try {
+            const group = await prisma.group.findUnique({where: {id: Number(id)}, include: {members: true}});
+            res.json(group);
+        } catch (error) {
+            next(error);
+        }
+    })
+
+    // [POST] /groups
+    app.post('/groups', async (req, res, next): Promise<void> => {
+        const { name, img, members, posts } = req.body;
+        try {
+            //Need to bundle member and post data to add to groups
+            const memberData = members?.map((user : Prisma.UserCreateInput) => {
+                return {username: user?.username, photo: user?.photo, location: user?.location, password: user?.password}
+            })
+
+            const postData = posts?.map((post : Prisma.PostCreateInput) => {
+                return {title: post?.title, img: post?.img, description: post?.description}
+            })
+
+            //Add all data to database
+            const result = await prisma.group.create({
+                data: {
+                    name,
+                    img,
+                    members: {
+                        create: memberData,
+                    },
+                    posts: {
+                        create: postData,
+                    },
+                },
+            })
+            res.json(result);     
+        } catch (error) {
+            next(error)
+        }
+    })
+    
+    // [PUT] /groups/:id
+    app.put('/groups/:id', async (req, res, next): Promise<void> => {
+        const { id } = req.params
+        const { name, img, members, posts } = req.body;
+        try {
+            const result = await prisma.group.update({
+                where: { id: Number(id) },
+                data: {
+                    name,
+                    img,
+                    members: {
+                        create: members,
+                    },
+                    posts: {
+                        create: posts,
+                    },
+                }
+            })
+            res.json(result)
+        } catch (error) {
+            next(error)
+        }
+    })
+
+    // [DELETE] /groups/:id
+    app.delete('groups/:id', async (req, res, next): Promise<void> => {
+        const { id } = req.params;
+        try {
+            const result = await prisma.group.delete({
+                where: {
+                    id: Number(id),
+                },
+            })
+            res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    })
+
+    //**RUN SERVER ON PORT**//
+    app.listen(port, (): void => {
         console.log(`Server listening at http://localhost:${port}`);
     });
