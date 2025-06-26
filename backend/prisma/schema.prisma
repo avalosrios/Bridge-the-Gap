@@ -1,36 +1,13 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       Int    @id @default(autoincrement())
-  username String @unique
-  password String
-  photo    String
-  location String
-  email    String
-  groups   Group[]
-}
-
-model Group {
-  id       Int    @id @default(autoincrement())
-  name     String
-  img      String
-  members  User[]
-  posts    Post[]
-}
-
-model Post {
-  id          Int    @id @default(autoincrement())
-  title       String
-  img         String?
-  description String
-  group       Group  @relation(fields: [groupID], references: [id])
-  groupID     Int       
-}
