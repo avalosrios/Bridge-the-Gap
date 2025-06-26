@@ -1,5 +1,5 @@
-const express = require('express')
-const session = require('express-session')
+import express from 'express';
+
 
 const server = express()
 server.use(express.json())
@@ -45,14 +45,14 @@ server.delete('api/groups', async (req, res, next) => {
 // ------------------------------------------------------------ //
 
 // [CATCH-ALL]
-server.use((req, res, next) => {
+server.use(() => {
     console.log("Server catch all")
 })
 
 //  [ERROR-HANDLING]
-server.use((err, req, res, next) => {
+server.use((err, res) => {
     const { message, status = 500 } = err;
     res.status(status).json({ message }); // REMOVE FROM PROD
 })
 
-module.exports = server
+export default server

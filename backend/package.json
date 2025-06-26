@@ -8,10 +8,13 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.10.1",
+    "@prisma/extension-accelerate": "^2.0.1",
     "argon2": "^0.43.0",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
-    "prisma": "^6.10.1"
+    "prisma": "^6.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "dev": "node --env-file=.env --watch index.js",
@@ -24,6 +27,7 @@
     "psql": "psql shelterdb -U app_user"
   },
   "devDependencies": {
+    "@types/node": "^24.0.4",
     "prettier": "3.6.1"
   }
 }
