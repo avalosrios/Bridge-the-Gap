@@ -25,7 +25,7 @@ import { withAccelerate } from '@prisma/extension-accelerate';
     app.get('/groups/:id', async (req, res, next): Promise<void> => {
         const { id } = req.params;
         try {
-            const group = await prisma.group.findUnique({where: {id: Number(id)}, include: {members: true}});
+            const group = await prisma.group.findUnique({where: {id: Number(id)}, include: {members: true, posts: true}});
             res.json(group);
         } catch (error) {
             next(error);
@@ -182,6 +182,61 @@ import { withAccelerate } from '@prisma/extension-accelerate';
             const result = await prisma.user.delete({
                 where: { id: Number(id)},
             })
+            res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    })
+
+    //------------------------------------------------------//
+
+    //---------------------POST ROUTING---------------------//
+
+    //  [GET] /groups/:id/posts
+    app.get('/groups/:id/posts', async (req, res, next): Promise<void> => {
+        const { id } = req.params;
+        try {
+            const group = await prisma.group.findUnique({where: {id: Number(id)}, include: {posts: true}});
+            res.json(group?.posts);
+        } catch (error) {
+            next(error);
+        }
+    })
+
+    //  [POST] /groups/:id/posts
+    app.post('/groups/:id/posts', async (req, res, next): Promise<void> => {
+        const { id }  = req.params;
+        const groupId = Number(id);
+        const { title, img, description } = req.body;
+        try {
+                const post = await prisma.post.create({
+                    data: {
+                        title,
+                        img,
+                        description,
+                        groupID: groupId
+                    },
+                })
+                const group = await prisma.group.update({
+                    where: {id: groupId},
+                    data: {
+                        posts: {
+                            connect: {id: post.id}
+                        },
+                    }
+                });
+            res.json(post);
+        } catch (error) {
+            next(error);
+        }
+    })
+
+    //  [DELETE] /groups/:groupId/posts/:postId
+    app.delete('/groups/:groupId/posts/:postId', async (req, res, next): Promise<void> => {
+        const groupId = req.params.groupId;
+        const postId = req.params.postId;
+        try {
+            const result = await prisma.post.delete({where: {id: Number(postId)}})
             res.json(result);
         } catch (error) {
             next(error)
