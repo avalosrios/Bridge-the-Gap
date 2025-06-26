@@ -20,7 +20,7 @@ import { withAccelerate } from '@prisma/extension-accelerate';
     });
 
     // [GET] /groups/:id
-    app.get('groups/:id', async (req, res, next): Promise<void> => {
+    app.get('/groups/:id', async (req, res, next): Promise<void> => {
         const { id } = req.params;
         try {
             const group = await prisma.group.findUnique({where: {id: Number(id)}, include: {members: true}});
@@ -67,16 +67,25 @@ import { withAccelerate } from '@prisma/extension-accelerate';
         const { id } = req.params
         const { name, img, members, posts } = req.body;
         try {
+            //Need to bundle member and post data to add to groups
+            const memberData = members?.map((user : Prisma.UserCreateInput) => {
+                return {username: user?.username, photo: user?.photo, location: user?.location, password: user?.password}
+            })
+
+            const postData = posts?.map((post : Prisma.PostCreateInput) => {
+                return {title: post?.title, img: post?.img, description: post?.description}
+            })
+
             const result = await prisma.group.update({
                 where: { id: Number(id) },
                 data: {
                     name,
                     img,
                     members: {
-                        create: members,
+                        create: memberData,
                     },
                     posts: {
-                        create: posts,
+                        create: postData,
                     },
                 }
             })
@@ -87,13 +96,11 @@ import { withAccelerate } from '@prisma/extension-accelerate';
     })
 
     // [DELETE] /groups/:id
-    app.delete('groups/:id', async (req, res, next): Promise<void> => {
+    app.delete('/groups/:id', async (req, res, next): Promise<void> => {
         const { id } = req.params;
         try {
             const result = await prisma.group.delete({
-                where: {
-                    id: Number(id),
-                },
+                where: { id: Number(id)},
             })
             res.json(result);
         } catch (error) {
