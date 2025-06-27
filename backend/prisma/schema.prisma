@@ -14,7 +14,7 @@ model User {
   photo    String
   location String
   email    String?
-  groups   Group[]
+  groups   Group[] @default([])
 }
 
 model Group {
@@ -22,7 +22,7 @@ model Group {
   name     String
   img      String
   members  User[]
-  posts    Post[]
+  posts    Post[] @default([])
 }
 
 model Post {
