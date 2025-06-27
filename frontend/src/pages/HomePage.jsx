@@ -10,13 +10,14 @@ import Footer from "../components/Footer";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function HomePage() {
-
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    const GROUP_URL = new URL('groups', BASE_URL);
-    httpRequest(GROUP_URL, 'GET').then(groupList => {setGroups(groupList)});
-  },[])
+    const GROUP_URL = new URL("groups", BASE_URL);
+    httpRequest(GROUP_URL, "GET").then((groupList) => {
+      setGroups(groupList);
+    });
+  }, []);
 
   return (
     <main>
