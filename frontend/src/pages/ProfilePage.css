@@ -1,17 +1,16 @@
 .member-icon {
-    z-index: 2;
-    
+  z-index: 2;
 }
 
 .back-button {
-    position: absolute;
-    text-decoration: none;
-    font-size: 30px;
-    left: 1em;
-    top: 3em;
+  position: absolute;
+  text-decoration: none;
+  font-size: 30px;
+  left: 1em;
+  top: 3em;
 }
 
 .profile-information {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }

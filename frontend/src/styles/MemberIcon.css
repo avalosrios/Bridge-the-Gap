@@ -1,13 +1,13 @@
 .member-icon {
-    width: 15em;
-    min-width: 15%;
-    margin: 1em 3em;
+  width: 15em;
+  min-width: 15%;
+  margin: 1em 3em;
 }
 
 .member-name {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .member-img {
-    border-radius: 10em;
+  border-radius: 10em;
 }
