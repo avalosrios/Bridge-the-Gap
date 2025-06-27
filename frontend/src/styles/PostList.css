@@ -17,3 +17,23 @@
   overflow-y: auto;
   background-color: var(--third-color);
 }
+
+.add-post-button {
+  background-color: #5ce65c;
+  margin: 1em auto;
+  border-radius: 30px;
+  border: none;
+  padding: 0 3em;
+  box-shadow: 10px 4px 10px 0px rgba(0, 0, 0, 0.79);
+  transition: 0.5s ease;
+}
+
+.add-post-button:hover {
+  box-shadow: 7px 4px 12px 0px rgba(0, 0, 0, 0.79);
+  transform: scale(1.05);
+}
+
+.add-post-button:active {
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.79);
+  transform: scale(0.95);
+}

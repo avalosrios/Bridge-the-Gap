@@ -69,7 +69,6 @@ const reminders = [
 ];
 
 export default function HomeDetails() {
-
   var id = 0;
 
   return (
@@ -78,7 +77,7 @@ export default function HomeDetails() {
       <h3>Reminders:</h3>
       <div className="reminders-list">
         {reminders.map((reminder) => {
-          return <Reminder reminder={reminder} key={++id}/>;
+          return <Reminder reminder={reminder} key={++id} />;
         })}
       </div>
     </div>

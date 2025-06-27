@@ -13,7 +13,7 @@ export default function GroupCard({ group, members }) {
           <div className="member-list">
             <p className="member-list-title">Member List:</p>
             {members.map((member) => {
-              return <MemberCard member={member} key={member.id}/>;
+              return <MemberCard member={member} key={member.id} />;
             })}
           </div>
         </div>
