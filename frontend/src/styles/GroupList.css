@@ -20,3 +20,24 @@
   position: relative;
   z-index: 1;
 }
+
+.create-group-button {
+  font-size: large;
+  background-color: var(--primary-color);
+  margin: 1em auto;
+  border-radius: 30px;
+  border: none;
+  padding: 0 3em;
+  box-shadow: 10px 4px 10px 0px rgba(0, 0, 0, 0.79);
+  transition: 0.5s ease;
+}
+
+.create-group-button:hover {
+  box-shadow: 7px 4px 12px 0px rgba(0, 0, 0, 0.79);
+  transform: scale(1.05);
+}
+
+.create-group-button:active {
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.79);
+  transform: scale(0.95);
+}

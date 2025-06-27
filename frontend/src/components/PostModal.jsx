@@ -46,6 +46,7 @@ export default function PostModal({ displayMode, onPost, onClose }) {
           onChange={handleInputChange}
           value={newPost.title}
           placeholder="New post..."
+          required
         />
         <h4>Add Image:</h4>
         <input type="file" className="img-input" onChange={handleFileChange} />
@@ -58,7 +59,7 @@ export default function PostModal({ displayMode, onPost, onClose }) {
           placeholder="How did i get here..."
         />
         <br />
-        <input type="submit" value="Post It!" />
+        <input type="submit" value="Post It!" className="submit-button" />
       </form>
     </section>
   );
