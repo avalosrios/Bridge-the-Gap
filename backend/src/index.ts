@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from "express";
+import express from "express";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
 
@@ -39,7 +39,6 @@ app.get("/groups/:id", async (req, res, next): Promise<void> => {
 app.post("/groups", async (req, res, next): Promise<void> => {
   const { name, img, members, posts } = req.body;
   try {
-    //Need to bundle member and post data to add to groups
     const memberData = members?.map((user: Prisma.UserCreateInput) => {
       return {
         username: user?.username,
@@ -63,10 +62,7 @@ app.post("/groups", async (req, res, next): Promise<void> => {
         name,
         img,
         members: {
-          create: memberData,
-        },
-        posts: {
-          create: postData,
+          connect: memberData,
         },
       },
     });
@@ -149,7 +145,10 @@ app.get("/users", async (req, res, next): Promise<void> => {
 app.get("/users/:id", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   try {
-    const user = await prisma.user.findUnique({ where: { id: Number(id) } });
+    const user = await prisma.user.findUnique({
+      where: { id: Number(id) },
+      include: { groups: true },
+    });
     res.json(user);
   } catch (error) {
     next(error);
