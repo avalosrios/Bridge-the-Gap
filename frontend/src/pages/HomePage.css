@@ -33,12 +33,12 @@
   color: #888;
 }
 
-body{
+body {
   background-color: var(--secondary-color);
   margin: 0;
 }
 
-h1{
+h1 {
   color: var(--text-color);
 }
 
