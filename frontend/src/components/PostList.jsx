@@ -2,6 +2,8 @@ import "../styles/PostList.css";
 import Post from "./Post";
 
 export default function PostList({ posts }) {
+  
+  if(posts){
   return (
     <div className="post-container">
       <div className="prompt-box">
@@ -21,4 +23,11 @@ export default function PostList({ posts }) {
       </div>
     </div>
   );
+}
+
+return(
+  <div>
+    <p>No post data</p>
+  </div>
+);
 }

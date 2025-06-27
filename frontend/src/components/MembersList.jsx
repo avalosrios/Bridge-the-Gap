@@ -2,6 +2,8 @@ import "../styles/MembersList.css";
 import MemberIcon from "./MemberIcon";
 
 export default function MembersList({ members }) {
+  
+  if(members){
   return (
     <div>
       <h2>Members</h2>
@@ -12,4 +14,11 @@ export default function MembersList({ members }) {
       </div>
     </div>
   );
+}
+
+return (
+  <div>
+    <p>No member data</p>
+  </div>
+)
 }
