@@ -12,7 +12,7 @@ export default function GroupCard({ group, members }) {
           <img src={group.img} alt="Group Image" className="group-img" />
           <div className="member-list">
             <p className="member-list-title">Member List:</p>
-            {members.map((member) => {
+            {members?.map((member) => {
               return <MemberCard member={member} key={member.id} />;
             })}
           </div>

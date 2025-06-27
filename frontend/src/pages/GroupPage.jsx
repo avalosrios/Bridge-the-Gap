@@ -48,16 +48,16 @@ function GroupPage() {
         {"<--"}
       </Link>
       <PostList posts={group ? group.posts : []} onOpen={openModal} />
-      <PostModal
-        onPost={createPost}
-        displayMode={modalDisplay}
-        onClose={closeModal}
-      />
       <MembersList members={group ? group.members : []} />
       {
         //Calendar
       }
       <Footer />
+      <PostModal
+        onPost={createPost}
+        displayMode={modalDisplay}
+        onClose={closeModal}
+      />
     </main>
   );
 }

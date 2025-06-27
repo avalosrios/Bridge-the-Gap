@@ -86,3 +86,11 @@ h6 {
 button:hover {
   cursor: pointer;
 }
+
+.submit-button {
+  margin: 1em;
+  cursor: pointer;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--secondary-color);
+}

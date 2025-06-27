@@ -1,6 +1,6 @@
 .group-card {
   width: auto;
-  max-width: fit-content;
+  max-width: 400px;
   min-width: 15%;
   height: 20vh;
   margin: 5% auto;
@@ -10,6 +10,7 @@
   border: gray solid 2px;
   border-radius: 10px;
   box-shadow: 3px 6.1px 6.1px hsl(0deg 0% 0% / 0.41);
+  overflow: hidden;
 }
 
 .group-info {
@@ -18,8 +19,8 @@
 }
 
 .group-img {
-  width: 9em;
-  height: 9em;
+  width: 40%;
+  height: 40%;
   max-width: 100%;
   max-height: 100%;
 }
@@ -36,8 +37,8 @@
 }
 
 .member-card img {
-  width: 10%;
-  height: 10%;
+  width: 1em;
+  height: 1em;
   border-radius: 20px;
   margin-right: 1em;
 }
