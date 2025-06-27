@@ -1,11 +1,13 @@
 import express from "express";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
+const cors = require('cors');
 
 const prisma = new PrismaClient().$extends(withAccelerate());
 
 const app: express.Application = express();
 app.use(express.json());
+app.use(cors());
 
 const port: number = 3000;
 
@@ -14,7 +16,7 @@ const port: number = 3000;
 //  [GET] /groups
 app.get("/groups", async (req, res, next): Promise<void> => {
   try {
-    const groups = await prisma.group.findMany();
+    const groups = await prisma.group.findMany({include: {members: true}});
     res.json(groups);
   } catch (error) {
     next(error);

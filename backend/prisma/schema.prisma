@@ -14,7 +14,7 @@ model User {
   photo    String
   location String
   email    String?
-  groups   Group[] @default([])
+  groups   Group[]
 }
 
 model Group {
@@ -22,7 +22,7 @@ model Group {
   name     String
   img      String
   members  User[]
-  posts    Post[] @default([])
+  posts    Post[]
 }
 
 model Post {
@@ -30,6 +30,6 @@ model Post {
   title       String
   img         String
   description String
-  group       Group  @relation(fields: [groupID], references: [id])
+  group       Group  @relation(fields: [groupID], references: [id], onDelete: Cascade)
   groupID     Int
 }

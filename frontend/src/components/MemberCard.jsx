@@ -1,8 +1,8 @@
 export default function MemberCard({ member }) {
   return (
     <div className="member-card">
-      <img src={member.profile_img} alt="Profile Pic" />
-      <p>{member.name}</p>
+      <img src={member.photo} alt="Profile Pic" />
+      <p>{member.username}</p>
     </div>
   );
 }
