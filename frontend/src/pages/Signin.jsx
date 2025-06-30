@@ -1,12 +1,12 @@
-import { httpRequest } from "../utils/utils"
+import {httpRequest} from '../utils/utils'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Signin() {
 
-    const handleSubmit = () => {
-        const USER_URL = new URL('/auth/signin', BASE_URL);
-        httpRequest(USER_URL,"POST")
+    const handleSubmit = async () => {
+        const AUTH_URL = new URL('/auth/signin', BASE_URL);
+        await httpRequest(AUTH_URL, "GET", )
     }
 
     return (
