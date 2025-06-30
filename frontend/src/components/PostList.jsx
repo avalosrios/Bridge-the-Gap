@@ -2,7 +2,7 @@ import "../styles/PostList.css";
 import Post from "./Post";
 
 export default function PostList({ posts, onOpen }) {
-  if (posts) {
+  if (posts != null) {
     return (
       <div className="post-container">
         <div className="prompt-box">

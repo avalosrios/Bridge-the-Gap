@@ -2,7 +2,7 @@ import "../styles/MembersList.css";
 import MemberIcon from "./MemberIcon";
 
 export default function MembersList({ members }) {
-  if (members) {
+  if (members != null) {
     return (
       <div>
         <h2>Members</h2>

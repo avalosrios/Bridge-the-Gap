@@ -4,6 +4,7 @@ import "./index.css";
 import HomePage from "./pages/HomePage.jsx";
 import GroupPage from "./pages/GroupPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import Signin from "./pages/signin.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const routes = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage />,
+  },
+  {
+    path: "/signin",
+    element: <Signin />,
   },
 ]);
 

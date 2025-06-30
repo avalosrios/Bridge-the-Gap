@@ -13,8 +13,8 @@ model User {
   password String
   photo    String
   location String
-  email    String?
-  groups   Group[]
+  email    String? @unique
+  groups   Group[] @default([])
 }
 
 model Group {

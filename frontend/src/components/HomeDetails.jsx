@@ -69,7 +69,7 @@ const reminders = [
 ];
 
 export default function HomeDetails() {
-  var id = 0;
+  var id = 0; // Temporary fix to give reminders id and not have console scream at me in dev mode
 
   return (
     <div className="home-details">
