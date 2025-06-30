@@ -6,6 +6,8 @@
 
 Project Plan: <https://docs.google.com/document/d/1vNQNzT8_fTWdJuXJ9tGQTQziGGsSEb8sm781ow9e8tE/edit?usp=sharing>
 
+Feature List: <https://docs.google.com/document/d/1W8MVLrEJUWygf_aet8GDMK0A21BPqwHh5pvGOLKMKVQ/edit?tab=t.0>
+
 ## Postgres Setup
 
 This project makes use of a postgres database for the backend of the application, if you do not already have it installed go install it here <https://www.postgresql.org/download/>
@@ -25,6 +27,14 @@ Now that we are in our postgres terminal we will set up our database with these 
     ALTER ROLE app_user CREATEDB;
     CREATE DATABASE bridgedb OWNER app_user;
 ```
+
+Now lets check to make sure our database was properly created
+
+```sql
+\l
+```
+
+After typing this command you should see a list of databases appear in your terminal, if your database is set up properly you should see a table named 'brdigedb; with a owner named 'app_user'.
 
 Now our database is initialized, lets leave the postgres terminal
 
