@@ -38,6 +38,7 @@
     "@prisma/extension-accelerate": "^2.0.1",
     "argon2": "^0.43.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
     "express": "^5.1.0"
   }
 }

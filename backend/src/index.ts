@@ -2,7 +2,12 @@ import express from "express";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { routes } from "./routes";
+import { ExpressAuth } from "@auth/express"
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import Credentials from "@auth/express/providers/credentials"
+import {hashPassword, verifyPassword} from './routes/argon'
 
+require('dotenv').config
 const cors = require("cors");
 const prisma = new PrismaClient().$extends(withAccelerate());
 const app: express.Application = express();

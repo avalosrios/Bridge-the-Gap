@@ -10,10 +10,8 @@ export const authRouter = Router();
 
 // If your app is served through a proxy
 // trust the proxy to allow us to read the `X-Forwarded-*` headers
-authRouter.set("trust proxy", true)
-authRouter.use(
-    "/auth{/*path}",
-     ExpressAuth({
+authRouter.set('trust proxy', true);
+authRouter.use('/auth{/*path}', ExpressAuth({
         providers: [
             Credentials({
                 credentials: {
@@ -48,3 +46,5 @@ authRouter.use(
         adapter: PrismaAdapter(prisma)
     })
 )
+
+export default {authRouter}
