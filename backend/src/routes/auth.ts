@@ -39,10 +39,15 @@ authRouter.post("/api/auth/login", async (req, res) => {
 
 authRouter.post("/api/auth/logout", (req, res) => {
   //destroy session
-  req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
-    }
-    res.json({ message: "Logged out" });
-  });
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) {
+        res.status(400).send({ message: "Error logging out" });
+      }
+      res.clearCookie("sessionId", { path: "/" });
+      res.json({ message: "Logged out" });
+    });
+  } else {
+    res.end();
+  }
 });

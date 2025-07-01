@@ -19,7 +19,7 @@ export async function httpRequest(URL, method, data) {
     })
     .catch((error) => {
       // Handle error
-      console.error("Error fetching boards:", error);
+      console.error("Error fetching data:", error);
       // Display an error message or retry the request
     });
 }
