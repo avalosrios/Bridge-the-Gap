@@ -19,7 +19,7 @@ function useCreateGroup() {
       httpRequest(GROUP_URL, "POST", groupData)
         .then(({ data }) => {
           //Use context to update group UI
-          setGroups([...groups, data]);
+          setGroups([...groups, groupData]);
         })
         .finally(() => {
           setIsLoading(false);
