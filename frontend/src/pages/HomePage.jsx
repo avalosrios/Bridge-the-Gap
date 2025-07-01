@@ -1,5 +1,5 @@
 import "./HomePage.css";
-import { useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { httpRequest } from "../utils/utils";
 import Header from "../components/Header";
 import Navagation from "../components/Navagation";
@@ -8,24 +8,27 @@ import GroupModal from "../components/GroupModal";
 import GroupList from "../components/GroupList";
 import Footer from "../components/Footer";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const GROUP_URL = "/api/group";
 
-function HomePage() {
-  const [groups, setGroups] = useState([]);
-  const [modalDisplay, setModalDisplay] = useState("modal-hidden");
-
-  useEffect(() => {
-    const GROUP_URL = new URL("groups", BASE_URL);
-    httpRequest(GROUP_URL, "GET").then((groupList) => {
-      setGroups(groupList);
-    });
+function useCreateGroup(groupData) {
+  const [isLoading, setIsLoading] = useState(true);
+  const create = useCallback(() => {
+    httpRequest(GROUP_URL, "POST", groupData)
+      .then((group) => {
+        // TODO: Do something here
+        console.log(group);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
-  const createGroup = async (groupData) => {
-    const GROUP_URL = new URL("groups", BASE_URL);
-    const newGroup = await httpRequest(GROUP_URL, "POST", groupData);
-    setGroups([...groups, newGroup]);
-  };
+  return [create, isLoading];
+}
+
+function HomePage() {
+  const [modalDisplay, setModalDisplay] = useState("modal-hidden");
+  const [createGroup] = useCreateGroup();
 
   const openModal = () => {
     setModalDisplay("modal-display");
@@ -43,7 +46,7 @@ function HomePage() {
       </div>
       <div className="home-content">
         <HomeDetails />
-        <GroupList groups={groups} onOpen={openModal} />
+        <GroupList onOpen={openModal} />
       </div>
       <Footer />
       <GroupModal
