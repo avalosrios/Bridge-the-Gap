@@ -1,20 +1,22 @@
 import express from "express";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
-const cors = require("cors");
+import cors from "cors";
+import morgan from "morgan";
 
 const prisma = new PrismaClient().$extends(withAccelerate());
 
 const app: express.Application = express();
 app.use(express.json());
 app.use(cors());
+app.use(morgan("tiny"));
 
 const port: number = 3000;
 
 //---------------------GROUP ROUTING--------------------//
 
 //  [GET] /groups
-app.get("/groups", async (req, res, next): Promise<void> => {
+app.get("/api/groups", async (req, res, next): Promise<void> => {
   try {
     const groups = await prisma.group.findMany({ include: { members: true } });
     res.json(groups);
@@ -24,7 +26,7 @@ app.get("/groups", async (req, res, next): Promise<void> => {
 });
 
 // [GET] /groups/:id
-app.get("/groups/:id", async (req, res, next): Promise<void> => {
+app.get("/api/groups/:id", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   try {
     const group = await prisma.group.findUnique({
@@ -38,7 +40,7 @@ app.get("/groups/:id", async (req, res, next): Promise<void> => {
 });
 
 // [POST] /groups
-app.post("/groups", async (req, res, next): Promise<void> => {
+app.post("/api/groups", async (req, res, next): Promise<void> => {
   const { name, img, members, posts } = req.body;
   try {
     const memberData = members?.map((user: Prisma.UserCreateInput) => {
@@ -50,16 +52,8 @@ app.post("/groups", async (req, res, next): Promise<void> => {
       };
     });
 
-    const postData = posts?.map((post: Prisma.PostCreateInput) => {
-      return {
-        title: post?.title,
-        img: post?.img,
-        description: post?.description,
-      };
-    });
-
     //Add all data to database
-    const result = await prisma.group.create({
+    const data = await prisma.group.create({
       data: {
         name,
         img,
@@ -68,14 +62,14 @@ app.post("/groups", async (req, res, next): Promise<void> => {
         },
       },
     });
-    res.json(result);
+    res.json({ data });
   } catch (error) {
     next(error);
   }
 });
 
 // [PUT] /groups/:id
-app.put("/groups/:id", async (req, res, next): Promise<void> => {
+app.put("/api/groups/:id", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   const { name, img, members, posts } = req.body;
   try {
@@ -117,7 +111,7 @@ app.put("/groups/:id", async (req, res, next): Promise<void> => {
 });
 
 // [DELETE] /groups/:id
-app.delete("/groups/:id", async (req, res, next): Promise<void> => {
+app.delete("/api/groups/:id", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   try {
     const result = await prisma.group.delete({
@@ -134,7 +128,7 @@ app.delete("/groups/:id", async (req, res, next): Promise<void> => {
 //---------------------USER ROUTING---------------------//
 
 // [GET] /users
-app.get("/users", async (req, res, next): Promise<void> => {
+app.get("/api/users", async (req, res, next): Promise<void> => {
   try {
     const users = await prisma.user.findMany();
     res.json(users);
@@ -144,7 +138,7 @@ app.get("/users", async (req, res, next): Promise<void> => {
 });
 
 // [GET] /users/:id
-app.get("/users/:id", async (req, res, next): Promise<void> => {
+app.get("/api/users/:id", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   try {
     const user = await prisma.user.findUnique({
@@ -158,7 +152,7 @@ app.get("/users/:id", async (req, res, next): Promise<void> => {
 });
 
 // [POST] /users
-app.post("/users", async (req, res, next): Promise<void> => {
+app.post("/api/users", async (req, res, next): Promise<void> => {
   const { username, password, photo, location, email } = req.body;
   try {
     const result = await prisma.user.create({
@@ -177,7 +171,7 @@ app.post("/users", async (req, res, next): Promise<void> => {
 });
 
 //  [PUT] /users/:id
-app.put("/users/:id", async (req, res, next): Promise<void> => {
+app.put("/api/users/:id", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   const { username, password, photo, location, email } = req.body;
   try {
@@ -198,7 +192,7 @@ app.put("/users/:id", async (req, res, next): Promise<void> => {
 });
 
 // [DELETE] /users/:id
-app.delete("/users/:id", async (req, res, next): Promise<void> => {
+app.delete("/api/users/:id", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   try {
     const result = await prisma.user.delete({
@@ -215,7 +209,7 @@ app.delete("/users/:id", async (req, res, next): Promise<void> => {
 //---------------------POST ROUTING---------------------//
 
 //  [GET] /groups/:id/posts
-app.get("/groups/:id/posts", async (req, res, next): Promise<void> => {
+app.get("/api/groups/:id/posts", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   try {
     const group = await prisma.group.findUnique({
@@ -229,7 +223,7 @@ app.get("/groups/:id/posts", async (req, res, next): Promise<void> => {
 });
 
 //  [POST] /groups/:id/posts
-app.post("/groups/:id/posts", async (req, res, next): Promise<void> => {
+app.post("/api/groups/:id/posts", async (req, res, next): Promise<void> => {
   const { id } = req.params;
   const groupId = Number(id);
   const { title, img, description } = req.body;
@@ -258,7 +252,7 @@ app.post("/groups/:id/posts", async (req, res, next): Promise<void> => {
 
 //  [DELETE] /groups/:groupId/posts/:postId
 app.delete(
-  "/groups/:groupId/posts/:postId",
+  "/api/groups/:groupId/posts/:postId",
   async (req, res, next): Promise<void> => {
     const groupId = req.params.groupId;
     const postId = req.params.postId;

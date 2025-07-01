@@ -8,7 +8,6 @@ import MembersList from "../components/MembersList";
 import Footer from "../components/Footer";
 
 import "./GroupPage.css";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function GroupPage() {
   const params = useParams();
@@ -17,7 +16,7 @@ function GroupPage() {
   const [modalDisplay, setModalDisplay] = useState("modal-hidden");
 
   useEffect(() => {
-    const GROUP_URL = new URL(`groups/${params.id}`, BASE_URL);
+    const GROUP_URL = `/api/groups/${params.id}`;
     httpRequest(GROUP_URL, "GET").then((group) => {
       setGroup(group);
     });
