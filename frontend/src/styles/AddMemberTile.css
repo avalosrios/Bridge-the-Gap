@@ -1,0 +1,14 @@
+.member-tile {
+  background-color: var(--secondary-color);
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+  height: 50px;
+  transition: 0.5s ease;
+  z-index: 10;
+}
+
+.member-tile:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+}
