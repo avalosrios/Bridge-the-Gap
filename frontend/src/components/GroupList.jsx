@@ -9,11 +9,7 @@ export default function GroupList({ groups, onOpen }) {
       </button>
       {groups.map((group) => {
         return (
-          <GroupCard
-            group={group}
-            key={group.id}
-            members={group ? group.members : []}
-          />
+          <GroupCard group={group} key={group.id} members={group.members} />
         );
       })}
     </section>

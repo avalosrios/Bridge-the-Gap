@@ -8,9 +8,7 @@ const defaultGroup = {
   members: [],
 };
 
-
 export default function GroupModal({ displayMode, onClose, onCreate }) {
-  
   const [newGroup, setNewGroup] = useState(defaultGroup);
 
   const handleFileChange = (event) => {
@@ -32,9 +30,9 @@ export default function GroupModal({ displayMode, onClose, onCreate }) {
   const handleMemberChange = (members) => {
     setNewGroup({
       ...newGroup,
-      members: members
-    })
-  } 
+      members: members,
+    });
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -61,7 +59,7 @@ export default function GroupModal({ displayMode, onClose, onCreate }) {
         <h4>Group Image:</h4>
         <input type="file" onChange={handleFileChange} />
         <h4>Add Members to Groups:</h4>
-        <MemberSearch onChange={handleMemberChange}/>
+        <MemberSearch onChange={handleMemberChange} />
         <input
           type="submit"
           value="Create New Group"
