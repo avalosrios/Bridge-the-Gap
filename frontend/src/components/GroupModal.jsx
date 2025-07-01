@@ -4,7 +4,7 @@ import MemberSearch from "./MemberSearch";
 
 const defaultGroup = {
   name: "",
-  img: "/default_group_pic.png",
+  img: "/deafult_group_pic.png",
   members: [],
 };
 

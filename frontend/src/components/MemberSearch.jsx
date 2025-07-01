@@ -3,14 +3,12 @@ import { useState, useEffect } from "react";
 import { httpRequest } from "../utils/utils";
 import AddMemberTile from "./AddMemberTile";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-
 export default function MemberSearch({ onChange }) {
   const [addedUsers, setAddedUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const USER_URL = new URL("/users", BASE_URL);
+    const USER_URL = "/api/users";
     httpRequest(USER_URL, "GET").then((userList) => {
       setUsers(userList);
     });

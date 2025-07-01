@@ -1,5 +1,5 @@
 import "./HomePage.css";
-import { useState, useEffect } from "react";
+import { useState, useCallback, useContext } from "react";
 import { httpRequest } from "../utils/utils";
 import Header from "../components/Header";
 import Navagation from "../components/Navagation";
@@ -7,25 +7,33 @@ import HomeDetails from "../components/HomeDetails";
 import GroupModal from "../components/GroupModal";
 import GroupList from "../components/GroupList";
 import Footer from "../components/Footer";
+import { groupContext } from "../providers/GroupProvider";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const GROUP_URL = "/api/groups";
+
+function useCreateGroup() {
+  const [isLoading, setIsLoading] = useState(true);
+  const { groups, setGroups } = useContext(groupContext);
+  const create = useCallback(
+    (groupData) => {
+      httpRequest(GROUP_URL, "POST", groupData)
+        .then(({ data }) => {
+          //Use context to update group UI
+          setGroups([...groups, groupData]);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    },
+    [groups, setGroups],
+  );
+
+  return [create, isLoading];
+}
 
 function HomePage() {
-  const [groups, setGroups] = useState([]);
   const [modalDisplay, setModalDisplay] = useState("modal-hidden");
-
-  useEffect(() => {
-    const GROUP_URL = new URL("groups", BASE_URL);
-    httpRequest(GROUP_URL, "GET").then((groupList) => {
-      setGroups(groupList);
-    });
-  }, []);
-
-  const createGroup = async (groupData) => {
-    const GROUP_URL = new URL("groups", BASE_URL);
-    const newGroup = await httpRequest(GROUP_URL, "POST", groupData);
-    setGroups([...groups, newGroup]);
-  };
+  const [createGroup] = useCreateGroup();
 
   const openModal = () => {
     setModalDisplay("modal-display");
@@ -43,7 +51,7 @@ function HomePage() {
       </div>
       <div className="home-content">
         <HomeDetails />
-        <GroupList groups={groups} onOpen={openModal} />
+        <GroupList onOpen={openModal} />
       </div>
       <Footer />
       <GroupModal
