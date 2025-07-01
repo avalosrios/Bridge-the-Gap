@@ -1,5 +1,5 @@
 import express from "express";
-import { PrismaClient, Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { hashPassword, verifyPassword } from "./argon";
 
 export const authRouter = express.Router();
@@ -15,7 +15,7 @@ authRouter.post("/api/auth/register", async (req, res) => {
     const newUser = await prisma.user.create({
       data: {
         username,
-        password: hash,
+        password: hash!,
       },
     });
     res.json(newUser);
@@ -26,9 +26,23 @@ authRouter.post("/api/auth/register", async (req, res) => {
 
 authRouter.post("/api/auth/login", async (req, res) => {
   //Check if username exists
-  //Check if password matches stored password
+  const { username, password } = req.body;
+  const user = await prisma.user.findUnique({ where: { username } });
+  //Check if password matches stored password if user exists
+  if (user !== null && (await verifyPassword(password, user.password))) {
+    req.session.userId = user.id;
+    res.json({ message: `Welcome back ${username}` });
+  } else {
+    res.status(400).json({ message: "Invalid username or password" });
+  }
 });
 
 authRouter.post("/api/auth/logout", (req, res) => {
   //destroy session
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.json({ message: "Logged out" });
+  });
 });

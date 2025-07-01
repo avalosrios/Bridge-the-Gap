@@ -1,4 +1,5 @@
 import express from "express";
+import session from "express-session";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { routes } from "./routes";
@@ -9,8 +10,23 @@ const prisma = new PrismaClient().$extends(withAccelerate());
 
 const app: express.Application = express();
 app.use(express.json());
+
 app.use(cors());
+app.set("trust proxy", 1); // works alongside "secure" cookie setting
 app.use(morgan("tiny"));
+app.use(
+  session({
+    name: "sessionId",
+    secret: "keep it secret, keep it safe",
+    cookie: {
+      maxAge: 1000 * 60 * 5,
+      secure: process.env.RENDER ? true : false,
+      httpOnly: false,
+    },
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 app.use("/", routes);
 
 const port: number = 3000;
