@@ -165,7 +165,7 @@ app.get("/api/user", async (req, res, next): Promise<void> => {
     try {
       const user = await prisma.user.findUnique({
         where: { id: Number(id) },
-        include: { groups: true },
+        include: { groups: { include: { members: true } } },
       });
       res.json(user);
     } catch (error) {
@@ -176,10 +176,39 @@ app.get("/api/user", async (req, res, next): Promise<void> => {
   }
 });
 
+// [GET] /api/user/groups
+app.get("/api/user/groups", async (req, res, next): Promise<void> => {
+  if (req.session.userId) {
+    const id = req.session.userId;
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id: Number(id) },
+        include: { groups: { include: { members: true } } },
+      });
+      res.json(user?.groups);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    res.json({ message: "Not logged in" });
+  }
+});
+
 //  [PUT] /users/:id
 app.put("/api/users/:id", async (req, res, next): Promise<void> => {
   const { id } = req.params;
-  const { username, password, photo, location, email } = req.body;
+  const { username, password, photo, location, email, groups } = req.body;
+
+  const groupData = groups?.map((group: Prisma.GroupCreateInput) => {
+    return {
+      name: group?.name,
+      img: group?.img,
+      members: {
+        create: group?.members,
+      },
+    };
+  });
+
   try {
     const result = await prisma.user.update({
       where: { id: Number(id) },
@@ -189,6 +218,9 @@ app.put("/api/users/:id", async (req, res, next): Promise<void> => {
         photo,
         location,
         email,
+        groups: {
+          connect: groupData,
+        },
       },
     });
     res.json(result);

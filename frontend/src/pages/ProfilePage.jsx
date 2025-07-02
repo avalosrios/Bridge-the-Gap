@@ -5,15 +5,26 @@ import Footer from "../components/Footer";
 import ProfileBanner from "../components/ProfileBanner";
 import MemberIcon from "../components/MemberIcon";
 import ProfileDetails from "../components/ProfileDetails";
+import useUser from "../hooks/useUser.js";
+import { userContext } from "../providers/UserProvider.jsx";
+import { useCallback, useContext } from "react";
+import { httpRequest } from "../utils/utils.js";
 
-const defaultMember = {
-  name: "user",
-  profile_img: "/default_profile_pic.jpg",
-  location: "Menlo Park, CA",
-  email: "user@gmail.com",
-};
+function useUpdateProfile() {
+  const { user, setUser } = useContext(userContext);
+  const update = useCallback((userData) => {
+    const USER_URL = `/api/users/${user.id}`;
+    httpRequest(USER_URL, "PUT", userData).then((updatedUser) => {
+      setUser(updatedUser);
+    });
+  });
+  return [update];
+}
 
 function ProfilePage() {
+  const { user } = useUser();
+  const [update] = useUpdateProfile();
+
   return (
     <main>
       <Header />
@@ -22,8 +33,8 @@ function ProfilePage() {
         {"<--"}
       </Link>
       <div className="profile-information">
-        <MemberIcon member={defaultMember} className="member-icon" />
-        <ProfileDetails user={defaultMember} />
+        <MemberIcon member={user} className="member-icon" />
+        <ProfileDetails onUpdate={update} />
       </div>
       <Footer />
     </main>

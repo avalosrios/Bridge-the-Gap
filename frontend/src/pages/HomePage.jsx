@@ -7,13 +7,13 @@ import HomeDetails from "../components/HomeDetails";
 import GroupModal from "../components/GroupModal";
 import GroupList from "../components/GroupList";
 import Footer from "../components/Footer";
-import { groupContext } from "../providers/GroupProvider";
+import { userGroupContext } from "../providers/UserGroupsProvider.jsx";
 
 const GROUP_URL = "/api/groups";
 
 function useCreateGroup() {
   const [isLoading, setIsLoading] = useState(true);
-  const { groups, setGroups } = useContext(groupContext);
+  const { groups, setGroups } = useContext(userGroupContext);
   const create = useCallback(
     (groupData) => {
       httpRequest(GROUP_URL, "POST", groupData)
