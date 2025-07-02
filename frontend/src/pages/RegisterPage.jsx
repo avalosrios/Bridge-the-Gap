@@ -33,7 +33,8 @@ export default function RegisterPage() {
         body: JSON.stringify(newUser),
       });
       if (response.ok) {
-        setUser(await response.json());
+        const { newUser } = await response.json();
+        setUser(newUser);
         navigate("/");
       } else {
         const json = await response.json();

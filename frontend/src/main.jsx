@@ -6,6 +6,7 @@ import GroupPage from "./pages/GroupPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import { GroupProvider } from "./providers/GroupProvider.jsx";
 import { UserProvider } from "./providers/UserProvider.jsx";
+import { UserGroupProvider } from "./providers/UserGroupsProvider.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import useUser from "./hooks/useUser.js";
 import LoginPage from "./pages/LoginPage.jsx";
@@ -41,8 +42,10 @@ const AppRoutes = () => {
 
 createRoot(document.getElementById("root")).render(
   <UserProvider>
-    <GroupProvider>
-      <AppRoutes />
-    </GroupProvider>
+    <UserGroupProvider>
+      <GroupProvider>
+        <AppRoutes />
+      </GroupProvider>
+    </UserGroupProvider>
   </UserProvider>,
 );

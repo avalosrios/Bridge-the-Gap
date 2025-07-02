@@ -1,9 +1,10 @@
 import "../styles/GroupList.css";
 import GroupCard from "./GroupCard";
-import useGroups from "../hooks/useGroups";
+import useUserGroups from "../hooks/useUserGroups.js";
 
 export default function GroupList({ onOpen }) {
-  const groups = useGroups();
+  const { groups } = useUserGroups();
+
   return (
     <section className="group-list">
       <button className="create-group-button" onClick={onOpen}>

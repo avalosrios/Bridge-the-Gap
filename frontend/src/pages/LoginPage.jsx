@@ -34,7 +34,8 @@ function LoginPage() {
         body: JSON.stringify(loginData),
       });
       if (response.ok) {
-        setUser(await response.json());
+        const { user } = await response.json();
+        setUser(user);
         navigate("/");
       } else {
         const json = await response.json();
