@@ -6,6 +6,7 @@ import GroupPage from "./pages/GroupPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import { GroupProvider } from "./providers/GroupProvider.jsx";
 import { UserProvider } from "./providers/UserProvider.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import useUser from "./hooks/useUser.js";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
@@ -18,20 +19,21 @@ const AppRoutes = () => {
       element: user ? <HomePage /> : <RegisterPage />,
     },
     {
-      path: "/group/:id",
-      element: <GroupPage />,
-    },
-    {
-      path: "/profile",
-      element: <ProfilePage />,
-    },
-    {
       path: "/login",
       element: <LoginPage />,
     },
     {
-      path: "/register",
-      element: <RegisterPage />,
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: "/group/:id",
+          element: <GroupPage />,
+        },
+        {
+          path: "/profile",
+          element: <ProfilePage />,
+        },
+      ],
     },
   ]);
   return <RouterProvider router={routes} />;

@@ -74,7 +74,7 @@ function LoginPage() {
         <br />
         <button onClick={handleLogin}>Login</button>
         <br />
-        <Link to="/register">Don't Have an account yet?</Link>
+        <Link to="/">Don't Have an account yet?</Link>
       </form>
     </div>
   );
