@@ -17,7 +17,11 @@ authRouter.post("/api/auth/register", async (req, res) => {
         username,
         password: hash!,
       },
+      omit: {
+        password: true,
+      },
     });
+    req.session.userId = newUser.id;
     res.json(newUser);
   } else {
     res.status(400).json({ message: "Username already exists" });
