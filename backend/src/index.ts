@@ -17,7 +17,7 @@ app.use(morgan("tiny"));
 app.use(
   session({
     name: "sessionId",
-    secret: "keep it secret, keep it safe",
+    secret: "keep it secret, keep it safe", //TODO: Read Secret from .env file
     cookie: {
       maxAge: 1000 * 60 * 5,
       secure: process.env.RENDER ? true : false,
