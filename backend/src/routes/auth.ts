@@ -31,7 +31,7 @@ authRouter.post("/api/auth/login", async (req, res) => {
   //Check if password matches stored password if user exists
   if (user !== null && (await verifyPassword(password, user.password))) {
     req.session.userId = user.id;
-    res.json({ message: `Welcome back ${username}` });
+    res.json({ ID: user.id });
   } else {
     res.status(400).json({ message: "Invalid username or password" });
   }

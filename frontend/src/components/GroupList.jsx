@@ -5,7 +5,7 @@ import useGroups from "../hooks/useGroups";
 const GROUPS_URL = "/api/groups";
 
 export default function GroupList({ onOpen }) {
-  const { groups } = useGroups();
+  const groups = useGroups();
   return (
     <section className="group-list">
       <button className="create-group-button" onClick={onOpen}>
