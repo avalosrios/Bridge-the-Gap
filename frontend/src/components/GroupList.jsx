@@ -2,8 +2,6 @@ import "../styles/GroupList.css";
 import GroupCard from "./GroupCard";
 import useGroups from "../hooks/useGroups";
 
-const GROUPS_URL = "/api/groups";
-
 export default function GroupList({ onOpen }) {
   const groups = useGroups();
   return (

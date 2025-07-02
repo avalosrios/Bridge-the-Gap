@@ -17,7 +17,7 @@ function useCreateGroup() {
   const create = useCallback(
     (groupData) => {
       httpRequest(GROUP_URL, "POST", groupData)
-        .then(({ data }) => {
+        .then(() => {
           //Use context to update group UI
           setGroups([...groups, groupData]);
         })
