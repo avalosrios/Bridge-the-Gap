@@ -12,7 +12,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 
 const AppRoutes = () => {
-  const user = useUser();
+  const { user } = useUser();
   const routes = createBrowserRouter([
     {
       path: "/",
