@@ -11,7 +11,6 @@ export default function Header() {
   const handleLogout = async () => {
     if (await httpRequest(LOGOUT_URL, "POST")) {
       navigate("/login");
-      console.log("Logout Success");
     }
   };
 

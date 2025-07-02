@@ -6,7 +6,9 @@ import { routes } from "./routes";
 import cors from "cors";
 import morgan from "morgan";
 
-const prisma = new PrismaClient().$extends(withAccelerate());
+const prisma = new PrismaClient({
+  omit: { user: { password: true } },
+}).$extends(withAccelerate());
 
 const app: express.Application = express();
 app.use(express.json());

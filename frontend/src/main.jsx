@@ -6,6 +6,7 @@ import GroupPage from "./pages/GroupPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import { GroupProvider } from "./providers/GroupProvider.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -24,10 +25,14 @@ const routes = createBrowserRouter([
     path: "/login",
     element: <LoginPage />,
   },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <GroupProvider>
-    <RouterProvider router={routes} />,
+    <RouterProvider router={routes} />
   </GroupProvider>,
 );
