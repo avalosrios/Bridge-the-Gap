@@ -1,7 +1,8 @@
 import "./LoginPage.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
+import { userContext } from "../providers/UserProvider";
 
 const LOGIN_URL = "/api/auth/login";
 
@@ -12,6 +13,7 @@ function LoginPage() {
   });
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const { setUser } = useContext(userContext);
 
   const handleInputChange = (evt) => {
     setLoginData({
@@ -32,6 +34,7 @@ function LoginPage() {
         body: JSON.stringify(loginData),
       });
       if (response.ok) {
+        setUser(await response.json());
         navigate("/");
       } else {
         const json = await response.json();

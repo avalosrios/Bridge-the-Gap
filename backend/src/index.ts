@@ -157,36 +157,22 @@ app.get("/api/users", async (req, res, next): Promise<void> => {
   }
 });
 
-// [GET] /users/:id
-app.get("/api/users/:id", async (req, res, next): Promise<void> => {
-  const { id } = req.params;
-  try {
-    const user = await prisma.user.findUnique({
-      where: { id: Number(id) },
-      include: { groups: true },
-    });
-    res.json(user);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// [POST] /users
-app.post("/api/users", async (req, res, next): Promise<void> => {
-  const { username, password, photo, location, email } = req.body;
-  try {
-    const result = await prisma.user.create({
-      data: {
-        username,
-        password,
-        photo,
-        location,
-        email,
-      },
-    });
-    res.json(result);
-  } catch (error) {
-    next(error);
+// [GET] /user
+// Get the currently logged in user based on the session
+app.get("/api/user", async (req, res, next): Promise<void> => {
+  if (req.session.userId) {
+    const id = req.session.userId;
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id: Number(id) },
+        include: { groups: true },
+      });
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    res.status(401).json({ message: "Not logged in" });
   }
 });
 
