@@ -26,16 +26,22 @@ export default function PostModal({ displayMode, onPost, onClose }) {
     });
   };
 
+  const handleClose = () => {
+    setNewPost(emptyPost);
+    onClose();
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     onPost(newPost);
     onClose();
+    setNewPost(emptyPost);
   };
 
   return (
     <section className={displayMode} onSubmit={handleSubmit}>
       <form className="modal-content">
-        <span className="close" onClick={onClose}>
+        <span className="close" onClick={handleClose}>
           X
         </span>
         <h2>New Post</h2>

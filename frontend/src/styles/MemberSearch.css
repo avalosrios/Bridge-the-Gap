@@ -1,10 +1,18 @@
 .unadded-members {
-  background-color: white;
+  background: #8f8f8f;
+  background: linear-gradient(0deg,rgba(143, 143, 143, 1) 6%, rgba(0, 0, 0, 1) 100%);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  overflow-y: auto;
+  max-height: 200px;
 }
 
 .added-members {
+  background-color: white;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  max-height: 150px;
 }
