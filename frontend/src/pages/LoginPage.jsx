@@ -2,7 +2,7 @@ import "./LoginPage.css";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
-import { userContext } from "../providers/UserProvider";
+import { UserContext } from "../providers/UserProvider";
 
 const LOGIN_URL = "/api/auth/login";
 
@@ -13,7 +13,7 @@ function LoginPage() {
   });
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-  const { setUser } = useContext(userContext);
+  const { setUser } = useContext(UserContext);
 
   const handleInputChange = (evt) => {
     setLoginData({

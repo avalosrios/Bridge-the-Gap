@@ -1,5 +1,5 @@
 import express from "express";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient } from "@prisma/client";
 import { hashPassword, verifyPassword } from "./argon";
 
 export const authRouter = express.Router();
@@ -15,7 +15,7 @@ authRouter.post("/api/auth/register", async (req, res) => {
     const newUser = await prisma.user.create({
       data: {
         username,
-        password: hash!,
+        password: hash
       },
       omit: {
         password: true,
