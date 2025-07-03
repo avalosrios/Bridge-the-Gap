@@ -10,7 +10,6 @@ export default function ProfileDetails({ onUpdate }) {
     location: user.location,
     email: user.email,
   });
-  console.log(newUser);
 
   const handleInputChange = (evt) => {
     setNewUser({

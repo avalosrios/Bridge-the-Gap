@@ -2,6 +2,7 @@ import "./RegisterPage.css";
 import { Link, useNavigate } from "react-router";
 import { useContext, useState } from "react";
 import { userContext } from "../providers/UserProvider.jsx";
+import { authContext } from "../providers/AuthProvider.jsx";
 
 const REGISTER_URL = "/api/auth/register";
 
@@ -13,6 +14,7 @@ export default function RegisterPage() {
   });
   const navigate = useNavigate();
   const { setUser } = useContext(userContext);
+  const { setAuth } = useContext(authContext);
 
   const handleInputChange = (evt) => {
     setNewUser({
@@ -34,6 +36,7 @@ export default function RegisterPage() {
       });
       if (response.ok) {
         const { newUser } = await response.json();
+        setAuth(true);
         setUser(newUser);
         navigate("/");
       } else {

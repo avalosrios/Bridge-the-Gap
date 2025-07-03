@@ -159,7 +159,7 @@ app.get("/api/users", async (req, res, next): Promise<void> => {
 
 // [GET] /user
 // Get the currently logged in user based on the session
-app.get("/api/user", async (req, res, next): Promise<void> => {
+app.get("/api/me", async (req, res, next): Promise<void> => {
   if (req.session.userId) {
     const id = req.session.userId;
     try {
@@ -190,7 +190,7 @@ app.get("/api/user/groups", async (req, res, next): Promise<void> => {
       next(error);
     }
   } else {
-    res.json({ message: "Not logged in" });
+    res.status(401).json({ message: "Not logged in" });
   }
 });
 

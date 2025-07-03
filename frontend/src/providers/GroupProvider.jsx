@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { httpRequest } from "../utils/utils.js";
+import useAuth from "../hooks/useAuth.js";
 
 const groupContext = createContext();
 
@@ -8,8 +9,12 @@ const GROUPS_URL = "/api/groups";
 function GroupProvider(props) {
   const [groups, setGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const auth = useAuth();
+
   useEffect(() => {
     setIsLoading(true);
+
+    if (!auth) return;
     httpRequest(GROUPS_URL, "GET")
       .then((groupList) => {
         setGroups(groupList);
@@ -17,7 +22,7 @@ function GroupProvider(props) {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [setGroups]);
+  }, [setGroups, auth]);
 
   return (
     <groupContext.Provider value={{ groups, setGroups, isLoading }}>

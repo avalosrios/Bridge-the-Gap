@@ -59,3 +59,8 @@ authRouter.post("/api/auth/logout", (req, res) => {
     res.end();
   }
 });
+
+authRouter.get("/api/auth/session", async (req, res) => {
+  const userExists = req.session.userId ? true : false;
+  res.json({ userExists });
+});
