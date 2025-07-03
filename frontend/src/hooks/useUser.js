@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { userContext } from "../providers/UserProvider.jsx";
+import { UserContext } from "../providers/UserProvider.jsx";
 
 export default function useUser() {
-  const { user, isLoading } = useContext(userContext);
+  const { user, isLoading } = useContext(UserContext);
   if (isLoading) {
     return { user: null, isLoading: true };
   } else {

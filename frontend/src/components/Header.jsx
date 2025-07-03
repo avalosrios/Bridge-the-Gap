@@ -2,14 +2,14 @@ import "../styles/Header.css";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import { httpRequest } from "../utils/utils.js";
-import { userContext } from "../providers/UserProvider.jsx";
+import { UserContext } from "../providers/UserProvider.jsx";
 import { useContext } from "react";
 
 const LOGOUT_URL = "/api/auth/logout";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { setUser } = useContext(userContext);
+  const { setUser } = useContext(UserContext);
 
   const handleLogout = async () => {
     if (await httpRequest(LOGOUT_URL, "POST")) {

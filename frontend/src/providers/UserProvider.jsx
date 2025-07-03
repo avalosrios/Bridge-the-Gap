@@ -1,29 +1,38 @@
 import { createContext, useState, useEffect } from "react";
 import { httpRequest } from "../utils/utils.js";
 
-const userContext = createContext();
+export const UserContext = createContext({
+  user: null,
+  loading: false,
+  isLoading: () => {},
+});
 
 const USER_URL = `/api/user`;
 
-function UserProvider({ children }) {
+export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(true);
+    if (user == null) {
+      setIsLoading(false);
+      return;
+    }
     httpRequest(USER_URL, "GET")
       .then((user) => {
         setUser(user);
       })
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [setUser]);
+  }, [setUser, user]);
 
   return (
-    <userContext.Provider value={{ user, setUser, isLoading }}>
+    <UserContext.Provider value={{ user, setUser, isLoading }}>
       {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   );
 }
-
-export { userContext, UserProvider };
