@@ -18,6 +18,12 @@
   cursor: pointer;
 }
 
+.search-button:active {
+  transform: scale(0.9);
+  transition: 0.5s ease;
+  border-color: white;
+}
+
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
   height: 16px;

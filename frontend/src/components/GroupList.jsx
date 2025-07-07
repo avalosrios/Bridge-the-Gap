@@ -15,7 +15,13 @@ export default function GroupList({ onOpen }) {
       </button>
       {groups?.map((group) => {
         return (
-          <GroupCard group={group} key={group.id} members={group.members} />
+          <GroupCard
+            group={group}
+            key={group.id}
+            members={group.members}
+            joinedGroup={true}
+            home={true}
+          />
         );
       })}
     </section>

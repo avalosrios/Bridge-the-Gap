@@ -2,13 +2,23 @@ import "../styles/Navagation.css";
 import { useState } from "react";
 import useSearch from "../hooks/useSearch.js";
 
-export default function Navagation({ onSearch, onClear }) {
+export function Navagation({ onSearch, onClear }) {
   const [searchedTerm, setSearchedTerm] = useState("");
   const { setSearchTerm } = useSearch();
 
   const handleSearch = () => {
     setSearchTerm(searchedTerm);
     onSearch();
+  };
+
+  const handleInput = (evt) => {
+    if (evt.target.value === "") {
+      handleClear();
+    } else if (evt.key === "Enter") {
+      handleSearch();
+    } else {
+      setSearchedTerm(evt.target.value);
+    }
   };
 
   const handleClear = () => {
@@ -23,10 +33,12 @@ export default function Navagation({ onSearch, onClear }) {
         placeholder="Search..."
         className="search-bar"
         value={searchedTerm}
-        onChange={(e) => setSearchedTerm(e.target.value)}
+        onInput={handleInput}
+        onKeyDown={handleInput}
       />
-      <button onClick={handleClear}>X</button>
-      <button onClick={handleSearch}>Search</button>
+      <button className={"search-button"} onClick={handleSearch}>
+        Search
+      </button>
     </div>
   );
 }
