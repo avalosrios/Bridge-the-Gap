@@ -165,7 +165,7 @@ app.get("/api/users", async (req, res, next): Promise<void> => {
   }
 });
 
-// [GET] /user
+// [GET] /me
 // Get the currently logged in user based on the session
 app.get("/api/me", async (req, res, next): Promise<void> => {
   if (req.session.userId) {
@@ -194,6 +194,29 @@ app.get("/api/user/groups", async (req, res, next): Promise<void> => {
         include: { groups: { include: { members: true } } },
       });
       res.json(user?.groups);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    res.status(401).json({ message: "Not logged in" });
+  }
+});
+
+// PUT /api/user/groups
+app.put("/api/user/groups", async (req, res, next): Promise<void> => {
+  if (req.session.userId) {
+    const id = req.session.userId;
+    const { groupId } = req.body;
+    try {
+      const user = await prisma.user.update({
+        where: { id: Number(id) },
+        data: {
+          groups: {
+            connect: { id: Number(groupId) },
+          },
+        },
+      });
+      res.json(user);
     } catch (error) {
       next(error);
     }

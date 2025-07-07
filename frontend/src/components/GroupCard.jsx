@@ -1,12 +1,28 @@
 import "../styles/GroupCard.css";
 import { Link } from "react-router";
 import MemberCard from "./MemberCard";
+import { httpRequest } from "../utils/utils.js";
+import { userGroupContext } from "../providers/UserGroupsProvider.jsx";
+import { useContext } from "react";
 
-export default function GroupCard({ group, members }) {
+const USER_GROUPS_URL = "/api/user/groups";
+
+export default function GroupCard({ group, members, joinedGroup, home }) {
+  const { groups, setGroups } = useContext(userGroupContext);
+
+  const handleJoin = () => {
+    if (!joinedGroup) {
+      console.log("join");
+      httpRequest(USER_GROUPS_URL, "PUT", { groupId: group.id }).then(() => {
+        setGroups([...groups, group]);
+      });
+    }
+  };
+
   if (group !== null) {
     return (
       <div className="group-card">
-        <Link to={`/group/${group.id}`} className="group-link"></Link>
+        {home && <Link to={`/group/${group.id}`} className="group-link"></Link>}
         <div className="group-content">
           <h2>{group.name}</h2>
           <div className="group-info">
@@ -19,6 +35,12 @@ export default function GroupCard({ group, members }) {
             </div>
           </div>
         </div>
+        <button
+          className={`${"join-group-button"} ${joinedGroup ? "joined-group" : "unjoined-group"}`}
+          onClick={handleJoin}
+        >
+          Join
+        </button>
       </div>
     );
   }
