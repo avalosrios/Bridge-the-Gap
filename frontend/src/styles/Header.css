@@ -44,11 +44,11 @@ header {
 }
 
 .logout-button {
-  margin: 1em;
   border-radius: 10px;
   border: none;
   background-color: var(--secondary-color);
   color: var(--text-color);
   transition: 0.5s ease;
   height: 3em;
+  margin: 1.5em 1em 1em auto;
 }

@@ -34,16 +34,22 @@ export default function GroupModal({ displayMode, onClose, onCreate }) {
     });
   };
 
+  const handleClose = () => {
+    setNewGroup(defaultGroup);
+    onClose();
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     onCreate(newGroup);
     onClose();
+    setNewGroup(defaultGroup);
   };
 
   return (
     <section className={displayMode} onSubmit={handleSubmit}>
       <form className="modal-content">
-        <span className="close" onClick={onClose}>
+        <span className="close" onClick={handleClose}>
           X
         </span>
         <h2>Create New Group:</h2>

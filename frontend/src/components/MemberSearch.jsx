@@ -28,17 +28,29 @@ export default function MemberSearch({ onChange }) {
 
   return (
     <div>
+      <p>Add to Group:</p>
       <div className="added-members">
-        <p>Add to Group:</p>
         {addedUsers.map((user) => {
-          return <AddMemberTile member={user} onClick={removeMember} />;
+          return (
+            <AddMemberTile
+              member={user}
+              onClick={removeMember}
+              className={"added-member"}
+            />
+          );
         })}
       </div>
 
-      <p>Add Members:</p>
+      <p>Added Members:</p>
       <div className="unadded-members">
         {users.map((user) => {
-          return <AddMemberTile member={user} onClick={addMember} />;
+          return (
+            <AddMemberTile
+              member={user}
+              onClick={addMember}
+              className={"unadded-member"}
+            />
+          );
         })}
       </div>
     </div>

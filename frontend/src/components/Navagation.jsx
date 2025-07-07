@@ -19,7 +19,7 @@ export default function Navagation({ onSearch, onClear }) {
   return (
     <div>
       <input
-        type="text"
+        type="search"
         placeholder="Search..."
         className="search-bar"
         value={searchedTerm}
