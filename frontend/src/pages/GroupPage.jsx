@@ -46,7 +46,11 @@ function GroupPage() {
       <Link to="/" className="back-button">
         {"<--"}
       </Link>
-      <PostList posts={group ? group.posts : []} onOpen={openModal} />
+      <PostList
+        posts={group?.posts ?? []}
+        onOpen={openModal}
+        group={group ? group : null}
+      />
       <MembersList members={group ? group.members : []} />
       {
         //Calendar
