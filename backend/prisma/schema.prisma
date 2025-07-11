@@ -15,12 +15,15 @@ model User {
   location String? @default("None")
   email    String? @unique
   groups   Group[]
+  circle   User[]  @relation("UserCircle")
+  inCircle User[]  @relation("UserCircle")
 }
 
 model Group {
-  id      Int    @id @default(autoincrement())
+  id      Int      @id @default(autoincrement())
   name    String
   img     String
+  tags    String[] @default([])
   members User[]
   posts   Post[]
 }
