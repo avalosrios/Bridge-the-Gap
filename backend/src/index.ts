@@ -80,7 +80,7 @@ app.get("/api/groups/:id", async (req, res, next): Promise<void> => {
   try {
     const group = await prisma.group.findUnique({
       where: { id: Number(id) },
-      include: { members: true, posts: true },
+      include: { members: true, posts: true, events: true },
     });
     res.json(group);
   } catch (error) {
@@ -208,6 +208,7 @@ app.get("/api/me", isAuthenticated, async (req, res, next): Promise<void> => {
         inCircle: true,
         circle: true,
         groups: { include: { members: true } },
+        events: true,
       },
     });
     res.json(user);
@@ -225,7 +226,7 @@ app.get(
     try {
       const user = await prisma.user.findUnique({
         where: { id: Number(userID) },
-        include: { groups: { include: { members: true } } },
+        include: { groups: { include: { members: true, events: true } } },
       });
       res.json(user?.groups);
     } catch (error) {
