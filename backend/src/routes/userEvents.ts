@@ -31,23 +31,20 @@ userEventsRouter.post(
     const { userId } = req.params;
     const { text, start, end } = req.body;
     try {
-      const event = await prisma.userEvent.create({
+      const user = await prisma.user.findUnique({
+        where: { id: Number(userId) },
+      });
+      const event = await prisma.event.create({
         data: {
           text: text,
           start: new Date(start),
           end: new Date(end),
-          userId: Number(userId),
-        },
-      });
-
-      const user = await prisma.user.update({
-        where: { id: Number(userId) },
-        data: {
-          events: {
-            connect: { id: event.id },
+          participants: {
+            connect: [{ id: user?.id }],
           },
         },
       });
+
       res.status(201).json({ event });
     } catch (error) {
       res.status(500).json({ message: "Error creating event", error: error });
@@ -62,15 +59,29 @@ userEventsRouter.put(
     const { userId, eventId } = req.params;
     const { text, start, end } = req.body;
     try {
-      const event = await prisma.userEvent.update({
-        where: { id: Number(eventId) },
-        data: {
-          text: text,
-          start: new Date(start),
-          end: new Date(end),
+      const event = await prisma.event.findFirst({
+        where: {
+          id: Number(eventId),
+          participants: { some: { id: Number(userId) } },
         },
+        select: { id: true },
       });
-      res.status(200).json({ event });
+      if (event) {
+        await prisma.event.update({
+          where: { id: Number(eventId) },
+          data: {
+            text: text,
+            start: new Date(start),
+            end: new Date(end),
+          },
+          include: {
+            participants: true,
+          },
+        });
+        res.status(200).json({ event });
+      } else {
+        throw new Error("Event not found for user");
+      }
     } catch (error) {
       res.status(400).json({ message: "Error updating event", error: error });
     }

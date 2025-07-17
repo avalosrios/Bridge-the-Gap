@@ -208,7 +208,7 @@ app.get("/api/me", isAuthenticated, async (req, res, next): Promise<void> => {
         inCircle: true,
         circle: true,
         groups: { include: { members: true } },
-        events: true,
+        events: { include: { group: true } },
       },
     });
     res.json(user);
@@ -241,8 +241,12 @@ app.put(
   isAuthenticated,
   async (req, res, next): Promise<void> => {
     const { userID } = req.params;
-    const { groupId, members } = req.body;
+    const { groupId } = req.body;
     try {
+      const group = await prisma.group.findUnique({
+        where: { id: Number(groupId) },
+        include: { members: true, events: true },
+      });
       const user = await prisma.user.update({
         where: { id: Number(userID) },
         data: {
@@ -250,13 +254,13 @@ app.put(
             connect: { id: Number(groupId) },
           },
           circle: {
-            connect: members.map((id: number) => ({ id })),
+            connect: group?.members.map((member) => ({ id: member.id })),
+          },
+          events: {
+            connect: group?.events.map((event) => ({ id: event.id })),
           },
         },
       });
-
-      //Update User Circle
-
       res.json(user);
     } catch (error) {
       next(error);

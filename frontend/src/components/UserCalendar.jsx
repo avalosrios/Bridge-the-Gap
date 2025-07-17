@@ -1,7 +1,6 @@
 import Calendar from "./Calendar";
 import { httpRequest } from "../utils/utils.js";
 import { userContext } from "../context/UserContext.jsx";
-import { userGroupsContext } from "../context/userGroupsContext.jsx";
 import { useContext } from "react";
 
 const styles = {
@@ -14,24 +13,20 @@ const styles = {
 export default function UserCalendar() {
   const { user, setUser } = useContext(userContext);
   const userEvents = user.events.map((event) => {
+    if (event.groupID !== null) {
+      return {
+        ...event,
+        backColor: "#fb4d4d",
+        text: `${event.text} - ${event.group.name}`,
+      };
+    }
     return {
       ...event,
-      backColor: "#4d9ffb",
+      backColor: "#7f7fff",
       text: `${event.text} - ${user.username}`,
     };
   });
-
-  const { groups } = useContext(userGroupsContext);
-  const groupEvents = groups.flatMap((group) => {
-    return group.events.map((event) => {
-      return {
-        ...event,
-        backColor: "#f35757",
-        text: `${event.text} - ${group.name}`,
-      };
-    });
-  });
-
+  
   const addEvent = (eventData) => {
     const EVENT_URL = `/api/user/${user.id}/events`;
     httpRequest(EVENT_URL, "POST", eventData).then((created) => {
@@ -44,7 +39,12 @@ export default function UserCalendar() {
 
   const deleteEvent = (id) => {
     const EVENT_URL = `/api/user/${user.id}/events/${id}`;
-    httpRequest(EVENT_URL, "DELETE");
+    httpRequest(EVENT_URL, "DELETE").then(() => {
+      setUser({
+        ...user,
+        events: user.events.filter((event) => event.id !== id),
+      });
+    });
   };
 
   const editEvent = (eventData) => {
@@ -55,7 +55,7 @@ export default function UserCalendar() {
   return (
     <div style={styles}>
       <Calendar
-        events={userEvents.concat(groupEvents)}
+        events={userEvents}
         onAdd={addEvent}
         onDelete={deleteEvent}
         onEdit={editEvent}

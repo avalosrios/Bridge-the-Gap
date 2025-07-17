@@ -2,7 +2,7 @@ import "../styles/GroupCard.css";
 import { Link } from "react-router";
 import MemberCard from "./MemberCard";
 import { httpRequest } from "../utils/utils.js";
-import { userGroupsContext } from "../context/userGroupsContext.jsx";
+import { userGroupsContext } from "../context/UserGroupsContext.jsx";
 import { useContext } from "react";
 import useUser from "../hooks/useUser.js";
 
@@ -13,10 +13,8 @@ export default function GroupCard({ group, members, joinedGroup, home }) {
   const handleJoin = () => {
     if (!joinedGroup) {
       const USER_GROUPS_URL = `/api/user/${user.id}/groups`;
-      const memberIds = group.members.map((member) => member.id);
       httpRequest(USER_GROUPS_URL, "PUT", {
         groupId: group.id,
-        members: memberIds,
       }).then(() => {
         setGroups([...groups, group]);
       });
